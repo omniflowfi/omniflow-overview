@@ -1,49 +1,150 @@
 # Omniflow
 
-**Omnichain liquidity layer built on LayerZero V2.**
+**Bridging before depositing is broken.**
 
-Omniflow is building an omnichain liquidity layer for DeFi.
+Today:
+Bridge → wait → switch chain → deposit
 
-The objective is simple: stop treating each chain as an isolated liquidity silo, and start coordinating liquidity through a shared omnichain rail.
+With Omniflow:
+Deposit → done
 
-Built on LayerZero V2, Omniflow is designed to simplify cross-chain execution, reduce fragmentation, and create a stronger base layer for DeFi applications operating across multiple networks.
+Omniflow lets any protocol accept liquidity from any chain
+in a single transaction.
 
-## What Omniflow is building
+No bridge step. No fragmented pools.
+Built on LayerZero V2.
 
-Omniflow is not just another bridge interface.
+---
 
-It is a liquidity coordination layer designed to make omnichain capital flows more coherent, more scalable, and easier to use.
+## The problem
 
-The system is being developed around a simple conviction:
+Liquidity in DeFi is fragmented across chains.
 
-- DeFi does not scale through per-chain fragmentation
-- liquidity should be coordinated across chains, not endlessly replicated
-- omnichain UX should feel like one system, not a patchwork of networks
+To use a protocol on another chain, users must:
 
-## Current status
+1. bridge their assets
+2. wait for confirmation
+3. switch networks
+4. then interact with the protocol
 
-Omniflow is in active development.
+This creates:
 
-A private sandbox environment is live, and the protocol is currently being iterated across multiple testnets.
+* unnecessary friction
+* slow execution
+* capital inefficiency
+* duplicated liquidity across chains
 
-The current work focuses on core omnichain primitives, including:
+As the number of chains grows, this UX breaks down further.
 
-- OFT-based token flows
-- cross-chain execution
-- coordinated liquidity routing
-- LayerZero V2-based messaging architecture
+---
 
-## Repository access
+## The shift
 
-The core repositories are private.
+Users shouldn’t move between chains.
 
-Technical walkthroughs, architecture discussions, and selected access can be shared with relevant partners, infrastructure teams, auditors, and investors.
+**Execution should.**
 
-## Links
+Omniflow removes the need for users to bridge assets manually
+by moving execution across chains instead.
 
-- Website: https://omniflow.fi
-- Sandbox: https://sandbox.omniflow.fi
+---
+
+## The solution
+
+Omniflow turns cross-chain deposits into a single action.
+
+A user can:
+
+* deposit from any chain
+* trigger execution on a destination chain
+* complete the full flow in one transaction
+
+No intermediate steps. No manual bridging.
+
+---
+
+## How it works
+
+1. A user submits a transaction on the source chain
+2. Omniflow uses LayerZero V2 messaging (`lzCompose`)
+3. Execution is triggered on the destination chain
+4. Liquidity is settled directly in the target pool
+
+The entire flow is handled atomically from the user’s perspective.
+
+---
+
+## What Omniflow is
+
+Omniflow is **not**:
+
+* a bridge
+* a DEX
+
+It is a **liquidity coordination layer**.
+
+Instead of moving users between chains,
+Omniflow moves execution and liquidity across them.
+
+---
+
+## What this enables
+
+* Cross-chain deposits in one transaction
+* Unified liquidity instead of per-chain silos
+* Simpler user experience
+* New primitives for omnichain DeFi
+
+---
+
+## Testnet
+
+Omniflow is live on testnet.
+
+The current version demonstrates:
+
+* single-transaction cross-chain deposits
+* execution on a destination chain
+* end-to-end flows powered by LayerZero V2 (`lzCompose`)
+
+👉 https://testnet.omniflow.fi
+
+---
+
+## For builders
+
+Omniflow acts as a base layer for omnichain applications.
+
+Protocols can integrate Omniflow to:
+
+* accept liquidity from any chain
+* remove bridge friction from their UX
+* avoid fragmented liquidity pools
+
+Integration examples and documentation are coming next.
+
+---
+
+## Tech
+
+* LayerZero V2
+* OFT (Omnichain Fungible Token)
+* `lzCompose` cross-chain execution
+
+---
+
+## Status
+
+Active development.
+
+The protocol is being iterated across multiple testnets
+with a focus on stabilizing core omnichain primitives.
+
+---
 
 ## Contact
 
-For relevant inquiries, partnership discussions, or technical walkthrough requests, access can be arranged directly.
+For technical walkthroughs, partnerships, or early access:
+
+* GitHub: https://github.com/omniflowfi
+* Website: https://omniflow.fi
